@@ -3,13 +3,52 @@
     x:Class="AppMenu_MVVM.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:AppMenu_MVVM"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:views="clr-namespace:AppMaui.Views"
+    FlyoutHeaderBehavior="CollapseOnScroll">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+     <!--Definición del template del menú-->
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="AliceBlue"
+                  HeightRequest="150">
+                <Image Aspect="AspectFill"
+                       Source="perfil.png"
+                       Opacity="0.6" />
+
+                <Label Text="Perfil"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="End" />
+            </Grid>            
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems"
+                
+                >
+        <!--Listamos las opciones para mostrar en la parte de abajo-->
+    
+        <ShellContent Title="Nuevo +"
+                      
+                      ContentTemplate="{DataTemplate views:Registro}" />
+        <ShellContent Title="Configuración"
+                    
+                      ContentTemplate="{DataTemplate views:Configuracion}" />  
+        <ShellContent Title="Perfil"
+                   
+                      ContentTemplate="{DataTemplate views:Perfil}" />
+        <!--Cada seleccion de este lista del menu seguira visible-->
+    </FlyoutItem>
+
+    <!--#region
+        Si solo queremos un menú simple en una coluimna agregar los elementos aqui.
+        Al agregar elementos aqui la lista de opciones del menú de arriba no se mostrara
+    -->
+        
+    <ShellContent Title="Información"
+                        ContentTemplate="{DataTemplate views:Informacion}" />  
+
 
 </Shell>
 
