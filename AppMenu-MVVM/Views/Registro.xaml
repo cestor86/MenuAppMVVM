@@ -2,18 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMaui.Views.Registro"
+             xmlns:viewModels="clr-namespace:AppMenu_MVVM.ViewModels"
              Title="Nuevo Registro">
-   
+
+    <ContentPage.BindingContext>
+        <viewModels:RegistroViewModel />
+    </ContentPage.BindingContext>
+
      <StackLayout Padding="10, 0">
          
         <Label Text="Nombre" FontSize="Medium" />
-        <Editor HorizontalOptions="Fill" BackgroundColor="#512BD4"/>
+        <Editor HorizontalOptions="Fill" BackgroundColor="#512BD4"
+                Text="{Binding Nombre}"/>
 
         <Label Text="Direccion" FontSize="Medium"/>
-        <Editor HorizontalOptions="Fill" BackgroundColor="#512BD4"/>
+        <Editor HorizontalOptions="Fill" BackgroundColor="#512BD4"
+                Text="{Binding Direccion}"/>
 
         <Label Text="Telefono" FontSize="Medium"/>
-        <Editor HorizontalOptions="Fill" BackgroundColor="#512BD4"/>
+        <Editor HorizontalOptions="Fill" BackgroundColor="#512BD4"
+                Text="{Binding Telefono}"/>
 
         <Label Text="Edad" FontSize="Medium"/>
         
@@ -30,7 +38,7 @@
                 Minimum="18"
                 VerticalOptions="Center" />
 
-        <Button Text="Guardar" Clicked="Button_Clicked"/>
+        <Button Text="Guardar" Command="{Binding AddCommand}"/>
         
     </StackLayout>
 </ContentPage>
