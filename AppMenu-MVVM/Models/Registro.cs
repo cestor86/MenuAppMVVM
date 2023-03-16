@@ -5,6 +5,10 @@
     {
         public Registro()
         {
+            nombre = string.Empty;
+            direccion = string.Empty;
+            telefono = string.Empty;
+            edad = string.Empty;
         }
 
    

@@ -12,7 +12,7 @@ namespace AppMenu_MVVM.ViewModels
 	{
 		ObservableCollection<Registro> registros;
 		Registro _registro;
-
+		bool _agregar = false;
 
 
 		public RegistroViewModel()
@@ -26,9 +26,7 @@ namespace AppMenu_MVVM.ViewModels
 			_registro = r;
         }
 
-        [Required]
-        [MinLength(10)]
-        [MaxLength(50)]
+        
         public string Nombre
 		{
 			get => _registro.nombre;
@@ -36,15 +34,15 @@ namespace AppMenu_MVVM.ViewModels
 			{
 				if (this._registro.nombre != value)
 				{
-					_registro.nombre = value;
-					OnPropertyChanged();
+                    
+                    _registro.nombre = value;
+                    Agregar = string.IsNullOrEmpty(_registro.nombre) ? false : true;
+                    OnPropertyChanged();
 				}
 			}
 		}
 
-        [Required]
-        [MinLength(10)]
-        [MaxLength(10)]
+    
         public string Direccion
 		{
 			get => _registro.direccion;
@@ -68,13 +66,33 @@ namespace AppMenu_MVVM.ViewModels
 			}
 		}
 
-		[RelayCommand]
-		private async Task Add()
+		public bool Agregar
 		{
-			registros.Add(_registro);
-			
-			await Shell.Current.GoToAsync(nameof(Registro));
+			get => _agregar;
+            set
+            {
+                
+                    _agregar = value;
+                    OnPropertyChanged();
+                
+            }
         }
+
+		[RelayCommand]
+		async void Add()
+		{
+			Registro contacto = new Registro();
+			contacto = _registro;
+
+			registros.Add(contacto);
+
+			await Shell.Current.DisplayAlert("Alerta", "Se Agrego Correctamente", "Ok");
+
+            //await Shell.Current.DisplayActionSheet("Compartir en ...?","Cancel",null,"Email","Twiter","Facebook");
+
+			Nombre = string.Empty;
+
+		}
 
         [RelayCommand]
 		private async Task SelectCommand()=>

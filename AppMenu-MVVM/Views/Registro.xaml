@@ -13,6 +13,7 @@
          
         <Label Text="Nombre" FontSize="Medium" />
         <Editor HorizontalOptions="Fill" BackgroundColor="#512BD4"
+                
                 Text="{Binding Nombre}"/>
 
         <Label Text="Direccion" FontSize="Medium"/>
@@ -38,7 +39,7 @@
                 Minimum="18"
                 VerticalOptions="Center" />
 
-        <Button Text="Guardar" Command="{Binding AddCommand}"/>
+        <Button Text="Guardar" Command="{Binding AddCommand}" IsEnabled="{Binding Agregar}"/>
         
     </StackLayout>
 </ContentPage>
